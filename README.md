@@ -1,4 +1,4 @@
-# 🎪 Clown Showdown
+# 🎪 Carnival of Chaos
 
 Un juego competitivo local para dos jugadores desarrollado en **Unity 2D**, donde dos payasos se enfrentan en un peculiar duelo de **Piedra, Papel o Tijera**. Ganar cada ronda no significa la victoria inmediata: solo otorga la oportunidad de atacar, mientras que el perdedor deberá defenderse para sobrevivir.
 
