@@ -12,7 +12,7 @@ public class GameFlowManager : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private PlayerMovement player1Movement;
-    [SerializeField] private PlayerMovement player2Movement;
+    //[SerializeField] private PlayerMovement player2Movement;
     [SerializeField] private float movementDuration = 5f;
 
     private RPSManager rpsManager;
@@ -31,7 +31,7 @@ public class GameFlowManager : MonoBehaviour
         currentPhase = GamePhase.RPS;
 
         player1Movement.SetMovementEnabled(false);
-        player2Movement.SetMovementEnabled(false);
+        //player2Movement.SetMovementEnabled(false);
     }
 
     private void Update()
@@ -60,7 +60,7 @@ public class GameFlowManager : MonoBehaviour
         currentPhase = GamePhase.Battle;
 
         player1Movement.SetMovementEnabled(true);
-        player2Movement.SetMovementEnabled(true);
+        //player2Movement.SetMovementEnabled(true);
 
         StartCoroutine(BattlePhaseTimer());
     }
@@ -75,7 +75,7 @@ public class GameFlowManager : MonoBehaviour
     private void EndBattlePhase()
     {
         player1Movement.SetMovementEnabled(false);
-        player2Movement.SetMovementEnabled(false);
+        //player2Movement.SetMovementEnabled(false);
 
         currentPhase = GamePhase.RPS;
 

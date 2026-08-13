@@ -41,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
 
         movementInput = MoveAction.ReadValue<Vector2>();
         movementInput = movementInput.normalized;
+
+        FixedDirection();
     }
 
     private void FixedUpdate()
@@ -69,6 +71,18 @@ public class PlayerMovement : MonoBehaviour
         {
             movementInput = Vector2.zero;
             rb.linearVelocity = Vector2.zero;
+        }
+    }
+
+    public void FixedDirection()
+    {
+        if(movementInput.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 }
