@@ -16,12 +16,14 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movementInput;
     private bool canMove = false;
+    private Animator _animator;
 
     public InputAction MoveAction;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -41,6 +43,9 @@ public class PlayerMovement : MonoBehaviour
 
         movementInput = MoveAction.ReadValue<Vector2>();
         movementInput = movementInput.normalized;
+
+        _animator.SetFloat("Move", movementInput.magnitude);
+        Debug.Log(movementInput.magnitude);
 
         FixedDirection();
     }
@@ -71,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
         {
             movementInput = Vector2.zero;
             rb.linearVelocity = Vector2.zero;
+            _animator.SetFloat("Move", movementInput.magnitude);
         }
     }
 
