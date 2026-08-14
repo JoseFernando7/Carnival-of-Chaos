@@ -827,7 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899b052c080cb9a4a824dcc0d7423548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyIA
-  moveSpeed: 7
+  moveSpeed: 9
   radiusOfRunaway: 8.38
   magnitude: 0.25
   center: {x: 9.99, y: -3.96}
