@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 7773948387269310844}
   m_Layer: 0
   m_Name: Oso
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -307,11 +307,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cf5b0f8584c98707bfa893d3df515b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 5
-  minX: -6.5
-  maxX: -0.6
-  minY: -4
-  maxY: 1.6
+  moveSpeed: 10
+  minX: -20
+  maxX: -3
+  minY: -12
+  maxY: 3
   MoveAction:
     m_Name: Move
     m_Type: 0
