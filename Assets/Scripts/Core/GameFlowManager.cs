@@ -12,6 +12,7 @@ public class GameFlowManager : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private PlayerMovement player1Movement;
+    [SerializeField] private EnemyIA player2Movement;
     //[SerializeField] private PlayerMovement player2Movement;
     [SerializeField] private float movementDuration = 5f;
 
@@ -19,6 +20,8 @@ public class GameFlowManager : MonoBehaviour
     private GamePhase currentPhase;
 
     private bool roundResolved;
+    private bool player1Win = false;
+    private bool draw = false;
 
     private void Awake()
     {
@@ -31,6 +34,7 @@ public class GameFlowManager : MonoBehaviour
         currentPhase = GamePhase.RPS;
 
         player1Movement.SetMovementEnabled(false);
+        player2Movement.state = EnemyIA.State.Idle;
         //player2Movement.SetMovementEnabled(false);
     }
 
@@ -50,6 +54,11 @@ public class GameFlowManager : MonoBehaviour
 
         RPSResult result = rpsManager.Evaluate(player1.CurrentChoice, player2.CurrentChoice);
 
+        if(result == RPSResult.Player1Wins)
+        {
+            player1Win = true;
+        }
+
         rpsUI.ShowResult(result);
 
         StartBattlePhase();
@@ -60,7 +69,11 @@ public class GameFlowManager : MonoBehaviour
         currentPhase = GamePhase.Battle;
 
         player1Movement.SetMovementEnabled(true);
-        //player2Movement.SetMovementEnabled(true);
+
+        if(player1Win == true)
+        {
+            player2Movement.state = EnemyIA.State.Runaway;
+        }
 
         StartCoroutine(BattlePhaseTimer());
     }
@@ -75,7 +88,7 @@ public class GameFlowManager : MonoBehaviour
     private void EndBattlePhase()
     {
         player1Movement.SetMovementEnabled(false);
-        //player2Movement.SetMovementEnabled(false);
+        player2Movement.state = EnemyIA.State.Idle;
 
         currentPhase = GamePhase.RPS;
 
@@ -87,6 +100,8 @@ public class GameFlowManager : MonoBehaviour
         player1.ResetChoice();
         player2.ResetChoice();
 
+        player1Win = false;
+        draw = false;
         roundResolved = false;
 
         rpsUI.HideResult();

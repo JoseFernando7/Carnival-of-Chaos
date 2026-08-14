@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
         movementInput = movementInput.normalized;
 
         _animator.SetFloat("Move", movementInput.magnitude);
-        Debug.Log(movementInput.magnitude);
 
         FixedDirection();
     }
