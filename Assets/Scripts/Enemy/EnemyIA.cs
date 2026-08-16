@@ -31,6 +31,7 @@ public class EnemyIA : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         _animator = GetComponent<Animator>();
+        transform.rotation = Quaternion.Euler(0,180,0);
     }
 
     private void Start()

@@ -9,6 +9,7 @@ public class GameFlowManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private RPSUI rpsUI;
+    [SerializeField] private UIAnimationsManager cards;
 
     [Header("Movement")]
     [SerializeField] private PlayerMovement player1Movement;
@@ -35,6 +36,7 @@ public class GameFlowManager : MonoBehaviour
 
         player1Movement.SetMovementEnabled(false);
         player2Movement.state = EnemyIA.State.Idle;
+        cards.CardStartGame();
         //player2Movement.SetMovementEnabled(false);
     }
 
@@ -103,6 +105,8 @@ public class GameFlowManager : MonoBehaviour
         player1Win = false;
         draw = false;
         roundResolved = false;
+
+        cards.CardRestart();
 
         rpsUI.HideResult();
     }
