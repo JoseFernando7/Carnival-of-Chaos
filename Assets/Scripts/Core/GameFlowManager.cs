@@ -63,7 +63,25 @@ public class GameFlowManager : MonoBehaviour
 
         rpsUI.ShowResult(result);
 
+        if (result == RPSResult.Draw)
+        {
+            StartCoroutine(DrawPhase());
+            return;
+        }
+
         StartBattlePhase();
+    }
+
+    private IEnumerator DrawPhase()
+    {
+        currentPhase = GamePhase.RPS;
+
+        player1Movement.SetMovementEnabled(false);
+        player2Movement.SetMovementEnabled(false);
+
+        yield return new WaitForSeconds(1.5f);
+
+        ResetRound();
     }
 
     private void StartBattlePhase()
