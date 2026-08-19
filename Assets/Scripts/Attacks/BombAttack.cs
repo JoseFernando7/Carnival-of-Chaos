@@ -48,27 +48,19 @@ public class BombAttack : MonoBehaviour
 
     private void Update()
     {
-        if (hasBeenThrown || Mouse.current == null)
+        if (hasBeenThrown || !isAiming || Mouse.current == null)
         {
             return;
         }
 
-        if (!isAiming && Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            StartAiming();
-        }
+        landingPosition = GetClampedMousePosition();
+        DrawTrajectory(landingPosition);
 
-        if (isAiming)
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            landingPosition = GetClampedMousePosition();
-            DrawTrajectory(landingPosition);
-
-            if (Mouse.current.leftButton.wasPressedThisFrame)
-            {
-                isAiming = false;
-                trajectoryLine.enabled = false;
-                ThrowBomb();
-            }
+            isAiming = false;
+            trajectoryLine.enabled = false;
+            ThrowBomb();
         }
     }
 
@@ -91,10 +83,9 @@ public class BombAttack : MonoBehaviour
 
         if (explosion != null)
         {
-            // Reinicia el efecto incluso si estaba activo durante la carga de la escena.
-            explosion.SetActive(false);
-            explosion.transform.position = new Vector3(landingPosition.x, landingPosition.y, 0f);
-            explosion.SetActive(true);
+            Vector3 explosionPosition = new Vector3(landingPosition.x, landingPosition.y, 0f);
+            GameObject spawnedExplosion = Instantiate(explosion, explosionPosition, explosion.transform.rotation);
+            spawnedExplosion.SetActive(true);
         }
 
         gameObject.SetActive(false);
@@ -117,8 +108,13 @@ public class BombAttack : MonoBehaviour
         rb.linearVelocity = initialVelocity;
     }
 
-    private void StartAiming()
+    public void ActivateAiming()
     {
+        if (hasBeenThrown)
+        {
+            return;
+        }
+
         if (mainCamera == null || trajectoryLine == null)
         {
             Debug.LogError("BombAttack necesita una cámara principal y un LineRenderer hijo para apuntar.", this);

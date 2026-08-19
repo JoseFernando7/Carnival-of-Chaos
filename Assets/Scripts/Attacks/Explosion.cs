@@ -15,4 +15,22 @@ public class Explosion : MonoBehaviour
         yield return new WaitForSeconds(duration);
         gameObject.SetActive(false);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        LogCollisionWithValidTag(collision.collider);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        LogCollisionWithValidTag(other);
+    }
+
+    private void LogCollisionWithValidTag(Collider2D other)
+    {
+        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        {
+            Debug.Log($"Colisión con {other.tag}");
+        }
+    }
 }

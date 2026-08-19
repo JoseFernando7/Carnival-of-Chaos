@@ -35,11 +35,6 @@ public class CannonAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current != null && Keyboard.current.cKey.wasPressedThisFrame && activeCannonBall == null)
-        {
-            isCannonModeActive = true;
-        }
-
         if (!isCannonModeActive || Mouse.current == null || mainCamera == null)
         {
             return;
@@ -63,6 +58,14 @@ public class CannonAttack : MonoBehaviour
 
         float clampedY = Mathf.Clamp(mouseWorldPosition.y, minimumY, maximumY);
         transform.position = new Vector3(fixedX, clampedY, transform.position.z);
+    }
+
+    public void ActivateCannonMode()
+    {
+        if (activeCannonBall == null)
+        {
+            isCannonModeActive = true;
+        }
     }
 
     private void Fire()
