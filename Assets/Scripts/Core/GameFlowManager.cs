@@ -77,7 +77,7 @@ public class GameFlowManager : MonoBehaviour
         currentPhase = GamePhase.RPS;
 
         player1Movement.SetMovementEnabled(false);
-        //player2Movement.SetMovementEnabled(false);
+        player2Movement.state = EnemyIA.State.Idle;
 
         yield return new WaitForSeconds(1.5f);
 
