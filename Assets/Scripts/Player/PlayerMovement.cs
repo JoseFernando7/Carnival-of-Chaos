@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _animator.SetFloat("Move", 0);
     }
 
     private void OnEnable()
