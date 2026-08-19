@@ -962,7 +962,11 @@ MonoBehaviour:
   moveSpeed: 9
   radiusOfRunaway: 8.38
   magnitude: 0.25
+  attackCD: 2
+  attackTimer: 0
+  canAttack: 0
   center: {x: 9.99, y: -3.96}
+  player: {fileID: 0}
   state: 0
 --- !u!1 &619576663
 GameObject:
@@ -3436,7 +3440,7 @@ MonoBehaviour:
   cards: {fileID: 1863222900}
   player1Movement: {fileID: 3945773939979840569}
   player2Movement: {fileID: 1530860107}
-  movementDuration: 5
+  movementDuration: 10
 --- !u!4 &1863222899
 Transform:
   m_ObjectHideFlags: 0
@@ -4152,6 +4156,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8809738313462992847, guid: c8b3f8ae674764847beda19412db7dd7, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 3977943576685665847}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
