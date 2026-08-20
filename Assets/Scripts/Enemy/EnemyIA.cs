@@ -17,15 +17,23 @@ public class EnemyIA : MonoBehaviour
     [SerializeField] private float radiusOfRunaway = 5;
     [SerializeField] private float magnitude = 0.25f;
 
+    [Header("Attack")]
     [SerializeField] private float attackCD = 2f;
     [SerializeField] private float attackTimer;
     [SerializeField] private bool canAttack = false;
     private bool isAttacking = false;
 
+    [Header("Weapons")]
+    [SerializeField] GameObject canon;
+    [SerializeField] GameObject shoe;
+    [SerializeField] GameObject dog;
+
     public Vector2 center = new Vector2(10f, -3f);
 
     private Vector2 targerPosition;
     private Vector2 towardsTarget;
+
+
 
 
 
@@ -64,6 +72,9 @@ public class EnemyIA : MonoBehaviour
                 _animator.SetFloat("Move", 0);
                 canAttack = false;
                 attackTimer = 0;
+                isAttacking = false;
+
+                canon.SetActive(false);
 
                 break;
 
@@ -108,14 +119,57 @@ public class EnemyIA : MonoBehaviour
 
                 Debug.DrawLine(transform.position, targerPosition, Color.green);
 
-                float distanceWithPlayer = Vector3.Distance(transform.position, new Vector3(transform.position.x, player.transform.position.y, transform.position.z));
-                if(distanceWithPlayer < 0.5 && canAttack)
-                {
-                    attackTimer = 0;
-                    canAttack = false;
-                    state = State.Attack;
-                }
+                //RANDOMIZADOR DE ARMA
 
+                int random = Random.Range(0, 1);
+
+                float distanceWithPlayer = Vector3.Distance(transform.position, new Vector3(transform.position.x, player.transform.position.y, transform.position.z));
+
+                switch (random)
+                {
+                    //Canon
+                    case 0:
+                        canon.SetActive(true);
+                        if (distanceWithPlayer < 0.5 && canAttack)
+                        {
+                            //Enemigo siempre gira para mirar al jugador y disparar correctamente
+                            transform.rotation = Quaternion.Euler(0, 180, 0);
+                            attackTimer = 0;
+                            canAttack = false;
+                            canon.GetComponent<EnemyCanon>().Shot();
+                        }
+                    break;
+
+                        //Shoe
+                    case 1:
+                        if (distanceWithPlayer < 0.5 && canAttack)
+                        {
+                            //Enemigo siempre gira para mirar al jugador y disparar correctamente
+                            transform.rotation = Quaternion.Euler(0, 180, 0);
+                            attackTimer = 0;
+                            canAttack = false;
+
+                            Vector3 setShoePosition = new Vector3(-1, transform.position.y, 0);
+
+                            Instantiate(shoe, setShoePosition, transform.rotation);
+                        }
+                    break;
+
+                    case 2:
+                        //Enemigo siempre gira para mirar al jugador y disparar correctamente
+                        if (canAttack)
+                        {
+                            transform.rotation = Quaternion.Euler(0, 180, 0);
+                            attackTimer = 0;
+                            canAttack = false;
+
+                            GameObject dogBomb = Instantiate(dog, transform.position, transform.rotation);
+                            dogBomb.GetComponent<BombAttack>().isForEnemy = true;
+                            dogBomb.GetComponent<BombAttack>().landingPosition = player.transform.position;
+                            dogBomb.GetComponent<BombAttack>().ThrowBomb();
+                        }
+                    break;
+                }
 
                 break;
 
@@ -131,17 +185,10 @@ public class EnemyIA : MonoBehaviour
         }
     }
 
-    //Esta funcion permie obtener una posicion random dentro de un area circular limitada. 
+    //Esta funcion permie obtener una posicion random dentro de un area circular limitada
     private void CalculateRandomPosition()
     {
         targerPosition = center + (Random.insideUnitCircle * radiusOfRunaway);
-
-        //if((targerPosition.x > maxX || targerPosition.x < minX) || (targerPosition.y > maxY || targerPosition.y < minY))
-        //{
-        //    targerPosition = -targerPosition;
-        //}
-
-        //Debug.Log(targerPosition);
     }
 
     private void Rotate()

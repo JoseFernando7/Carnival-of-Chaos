@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class BombAttack : Attack
 {
     [Header("Trajectory")]
-    [SerializeField] private Vector2 landingPosition = new Vector2(5.30000019f, -2.5f);
+    [SerializeField] public Vector2 landingPosition = new Vector2(5.30000019f, -2.5f);
     [Tooltip("Altura, en unidades de Unity, que alcanza la bomba sobre el punto más alto entre origen y destino.")]
     [SerializeField, Min(0.01f)] private float arcHeight = 6f;
 
@@ -23,6 +23,9 @@ public class BombAttack : Attack
     private bool isAiming;
     private bool hasBeenThrown;
     private float remainingFlightTime;
+
+    [Header("Enemy Parameters")]
+    public bool isForEnemy = false;
 
     public override void Activate()
     {
@@ -57,9 +60,13 @@ public class BombAttack : Attack
         {
             return;
         }
-
-        landingPosition = GetClampedMousePosition();
-        DrawTrajectory(landingPosition);
+        if(isForEnemy == false)
+        {
+            landingPosition = GetClampedMousePosition();
+        }
+        if(landingPosition != null){
+            DrawTrajectory(landingPosition);
+        }
 
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
@@ -97,7 +104,7 @@ public class BombAttack : Attack
         Destroy(gameObject,1f);
     }
 
-    private void ThrowBomb()
+    public void ThrowBomb()
     {
         hasBeenThrown = true;
         rb.gravityScale = 1f;

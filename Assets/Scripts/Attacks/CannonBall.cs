@@ -19,7 +19,7 @@ public class CannonBall : MonoBehaviour
     {
         rb.gravityScale = 0f;
         IgnorePlayerCollisions();
-        rb.linearVelocity = Vector2.right * speed;
+        rb.linearVelocity = transform.right * speed;
         Destroy(gameObject, lifetime);
     }
 
