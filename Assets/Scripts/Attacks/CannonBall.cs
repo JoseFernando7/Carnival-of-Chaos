@@ -39,14 +39,20 @@ public class CannonBall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.collider.CompareTag("Player"))
+        if (collision.collider.CompareTag("Player"))
         {
+            foreach (Collider2D ballCollider in ballColliders)
+            {
+                Physics2D.IgnoreCollision(ballCollider, collision.collider);
+            }
+
             return;
         }
 
-        foreach (Collider2D ballCollider in ballColliders)
+        if (collision.collider.CompareTag("Enemy"))
         {
-            Physics2D.IgnoreCollision(ballCollider, collision.collider);
+          Debug.Log($"Colisión con {collision.collider.tag}");
+          Destroy(gameObject);
         }
     }
 }

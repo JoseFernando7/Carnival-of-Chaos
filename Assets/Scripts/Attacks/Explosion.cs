@@ -14,6 +14,7 @@ public class Explosion : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

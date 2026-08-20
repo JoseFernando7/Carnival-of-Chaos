@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
-public class CannonAttack : MonoBehaviour
+public class CannonAttack : Attack
 {
     [Header("References")]
     [SerializeField] private CannonBall cannonBallPrefab;
@@ -15,6 +16,11 @@ public class CannonAttack : MonoBehaviour
     private float fixedX;
     private bool isCannonModeActive;
     private CannonBall activeCannonBall;
+
+    public override void Activate()
+    {
+      ActivateCannonMode();
+    }
 
     private void Awake()
     {
@@ -78,5 +84,13 @@ public class CannonAttack : MonoBehaviour
         activeCannonBall = Instantiate(cannonBallPrefab, muzzlePoint.position, Quaternion.identity);
         activeCannonBall.gameObject.SetActive(true);
         activeCannonBall.Launch();
+
+        StartCoroutine(DisableCannonAfterDelay());
+    }
+
+    private IEnumerator DisableCannonAfterDelay()
+    {
+      yield return new WaitForSeconds(2f);
+      Destroy(gameObject);
     }
 }
