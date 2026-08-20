@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a47b60f3ee7a263c8ab8c2e0a649ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnAttack
-  bombPrefab: {fileID: 8451622426223865001, guid: 60ef44e00a9aa17c78dc11b301f5b1b8, type: 3}
-  cannonPrefab: {fileID: 6051597630651325810, guid: 0e5f33c580abf5f09b9ac86dc68cfb40, type: 3}
-  shoePrefab: {fileID: 4592614686140177825, guid: 182f1cc0add64475b9a66efed3866777, type: 3}
+  attackPrefabs:
+  - {fileID: 8451622426223865001, guid: 60ef44e00a9aa17c78dc11b301f5b1b8, type: 3}
+  - {fileID: 6051597630651325810, guid: 0e5f33c580abf5f09b9ac86dc68cfb40, type: 3}
+  - {fileID: 4592614686140177825, guid: 182f1cc0add64475b9a66efed3866777, type: 3}

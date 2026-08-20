@@ -17,6 +17,9 @@ public class GameFlowManager : MonoBehaviour
     //[SerializeField] private PlayerMovement player2Movement;
     [SerializeField] private float movementDuration = 5f;
 
+    [Header("Attacks")]
+    [SerializeField] private SpawnAttack spawnAttack;
+
     private RPSManager rpsManager;
     private GamePhase currentPhase;
 
@@ -87,6 +90,8 @@ public class GameFlowManager : MonoBehaviour
     private void StartBattlePhase()
     {
         currentPhase = GamePhase.Battle;
+
+        spawnAttack.SpawnRandomAttack();
 
         player1Movement.SetMovementEnabled(true);
 

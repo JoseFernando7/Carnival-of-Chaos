@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 
-public class ShoeAttack : MonoBehaviour
+public class ShoeAttack : Attack
 {
     [Header("Spawn")]
     [SerializeField] private Vector3 spawnPosition = new Vector3(1.28f, -3.95f, 0f);
@@ -19,6 +19,11 @@ public class ShoeAttack : MonoBehaviour
     private Collider2D shoeCollider;
     private bool isShoeModeActive;
     private Coroutine returnRoutine;
+
+    public override void Activate()
+    {
+      ActivateShoeMode();
+    }
 
     private void Awake()
     {
@@ -71,6 +76,10 @@ public class ShoeAttack : MonoBehaviour
         transform.position = originalPosition;
         SetColliderEnabled(true);
         returnRoutine = null;
+
+        yield return new WaitForSeconds(0.5f);
+
+        Destroy(gameObject);
     }
 
     public void ActivateShoeMode()

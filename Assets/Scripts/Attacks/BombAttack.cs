@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BombAttack : MonoBehaviour
+public class BombAttack : Attack
 {
     [Header("Trajectory")]
     [SerializeField] private Vector2 landingPosition = new Vector2(5.30000019f, -2.5f);
@@ -23,6 +23,11 @@ public class BombAttack : MonoBehaviour
     private bool isAiming;
     private bool hasBeenThrown;
     private float remainingFlightTime;
+
+    public override void Activate()
+    {
+      ActivateAiming();
+    }
 
     private void Awake()
     {
@@ -89,6 +94,7 @@ public class BombAttack : MonoBehaviour
         }
 
         gameObject.SetActive(false);
+        Destroy(gameObject,1f);
     }
 
     private void ThrowBomb()

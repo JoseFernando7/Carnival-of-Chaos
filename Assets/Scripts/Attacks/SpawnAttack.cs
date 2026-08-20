@@ -1,36 +1,17 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class SpawnAttack : MonoBehaviour
 {
     [Header("Attack Prefabs")]
-    [SerializeField] private BombAttack bombPrefab;
-    [SerializeField] private CannonAttack cannonPrefab;
-    [SerializeField] private ShoeAttack shoePrefab;
+    [SerializeField] private Attack[] attackPrefabs;
 
-    private void Update()
+    public void SpawnRandomAttack()
     {
-        if (Keyboard.current == null)
-        {
-            return;
-        }
+      if (attackPrefabs.Length == 0) return;
 
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && bombPrefab != null)
-        {
-            BombAttack bomb = Instantiate(bombPrefab);
-            bomb.ActivateAiming();
-        }
+      int randomIndex = Random.Range(0, attackPrefabs.Length);
 
-        if (Keyboard.current.cKey.wasPressedThisFrame && cannonPrefab != null)
-        {
-            CannonAttack cannon = Instantiate(cannonPrefab);
-            cannon.ActivateCannonMode();
-        }
-
-        if (Keyboard.current.zKey.wasPressedThisFrame && shoePrefab != null)
-        {
-            ShoeAttack shoe = Instantiate(shoePrefab);
-            shoe.ActivateShoeMode();
-        }
+      Attack attack = Instantiate(attackPrefabs[randomIndex]);
+      attack.Activate();
     }
 }
