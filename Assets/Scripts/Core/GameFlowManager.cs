@@ -99,6 +99,10 @@ public class GameFlowManager : MonoBehaviour
         {
             player2Movement.state = EnemyIA.State.Runaway;
         }
+        else
+        {
+            player2Movement.state = EnemyIA.State.FollorPlayer;
+        }
 
         StartCoroutine(BattlePhaseTimer());
     }

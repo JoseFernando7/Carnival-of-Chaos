@@ -28,6 +28,8 @@ public class EnemyIA : MonoBehaviour
     [SerializeField] GameObject shoe;
     [SerializeField] GameObject dog;
 
+    private int randomAttack;
+
     public Vector2 center = new Vector2(10f, -3f);
 
     private Vector2 targerPosition;
@@ -76,6 +78,8 @@ public class EnemyIA : MonoBehaviour
 
                 canon.SetActive(false);
 
+                randomAttack = GenerateRandomNumber();
+
                 break;
 
             case State.Runaway:
@@ -121,11 +125,9 @@ public class EnemyIA : MonoBehaviour
 
                 //RANDOMIZADOR DE ARMA
 
-                int random = Random.Range(0, 1);
-
                 float distanceWithPlayer = Vector3.Distance(transform.position, new Vector3(transform.position.x, player.transform.position.y, transform.position.z));
 
-                switch (random)
+                switch (randomAttack)
                 {
                     //Canon
                     case 0:
@@ -210,6 +212,13 @@ public class EnemyIA : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         state = State.FollorPlayer;
         isAttacking = false;
+    }
+
+    private int GenerateRandomNumber()
+    {
+        int random = Random.Range(0, 3);
+
+        return random;
     }
 
     private void OnDrawGizmos()
