@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 179419010}
   - component: {fileID: 179419009}
   - component: {fileID: 179419008}
+  - component: {fileID: 179419011}
   m_Layer: 5
   m_Name: Button perezosa
   m_TagString: Untagged
@@ -330,6 +331,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 179419006}
   m_CullTransparentMesh: 1
+--- !u!95 &179419011
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179419006}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ff18242cd9665aa448db6872fd468f3c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &230676853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,6 +1196,7 @@ GameObject:
   - component: {fileID: 818702792}
   - component: {fileID: 818702791}
   - component: {fileID: 818702790}
+  - component: {fileID: 818702793}
   m_Layer: 5
   m_Name: Button Zorro
   m_TagString: Untagged
@@ -1293,6 +1317,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818702788}
   m_CullTransparentMesh: 1
+--- !u!95 &818702793
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818702788}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 104c71ffd36507b4897cf93bef798c13, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &897798645
 GameObject:
   m_ObjectHideFlags: 0
@@ -2025,6 +2071,7 @@ GameObject:
   - component: {fileID: 1499494371}
   - component: {fileID: 1499494370}
   - component: {fileID: 1499494369}
+  - component: {fileID: 1499494372}
   m_Layer: 5
   m_Name: Button pez
   m_TagString: Untagged
@@ -2145,6 +2192,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499494367}
   m_CullTransparentMesh: 1
+--- !u!95 &1499494372
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499494367}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4c7e4a64c6132044d9940ede1694e0a6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1530860107 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8809738313462992847, guid: c8b3f8ae674764847beda19412db7dd7, type: 3}
@@ -2275,6 +2344,7 @@ GameObject:
   - component: {fileID: 1593929956}
   - component: {fileID: 1593929955}
   - component: {fileID: 1593929954}
+  - component: {fileID: 1593929957}
   m_Layer: 5
   m_Name: Button oso
   m_TagString: Untagged
@@ -2395,6 +2465,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593929952}
   m_CullTransparentMesh: 1
+--- !u!95 &1593929957
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593929952}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4762309902979374aa7da8a977e4a09c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1616405679
 GameObject:
   m_ObjectHideFlags: 0
