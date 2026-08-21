@@ -27,6 +27,7 @@ public class EnemyIA : MonoBehaviour
     [SerializeField] GameObject canon;
     [SerializeField] GameObject shoe;
     [SerializeField] GameObject dog;
+    [SerializeField] GameObject UiWeapons;
 
     private int randomAttack;
 
@@ -35,11 +36,10 @@ public class EnemyIA : MonoBehaviour
     private Vector2 targerPosition;
     private Vector2 towardsTarget;
 
-
-
-
-
-   [SerializeField] private GameObject player;
+    //Cree esta variable como salvavidas para que la animacion solo se active una vez
+    private int countOfAttacks = 0;
+    
+    [SerializeField] private GameObject player;
     private Rigidbody2D rb;
     private Animator _animator;
 
@@ -66,12 +66,15 @@ public class EnemyIA : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(countOfAttacks);
         switch (state)
         {
             case State.Idle:
 
                 rb.linearVelocity = Vector3.zero;
                 _animator.SetFloat("Move", 0);
+                countOfAttacks = 0;
+                UiWeapons.GetComponent<UiWeapons>().Desactivate();
                 canAttack = false;
                 attackTimer = 0;
                 isAttacking = false;
@@ -131,6 +134,8 @@ public class EnemyIA : MonoBehaviour
                 {
                     //Canon
                     case 0:
+                        UiWeapons.GetComponent<UiWeapons>().ActivateCanon(countOfAttacks);
+                        countOfAttacks++;
                         canon.SetActive(true);
                         if (distanceWithPlayer < 0.5 && canAttack)
                         {
@@ -144,6 +149,8 @@ public class EnemyIA : MonoBehaviour
 
                         //Shoe
                     case 1:
+                        UiWeapons.GetComponent<UiWeapons>().ActivateShoe(countOfAttacks);
+                        countOfAttacks++;
                         if (distanceWithPlayer < 0.5 && canAttack)
                         {
                             //Enemigo siempre gira para mirar al jugador y disparar correctamente
@@ -158,6 +165,8 @@ public class EnemyIA : MonoBehaviour
                     break;
 
                     case 2:
+                        UiWeapons.GetComponent<UiWeapons>().ActivateDog(countOfAttacks);
+                        countOfAttacks++;
                         //Enemigo siempre gira para mirar al jugador y disparar correctamente
                         if (canAttack)
                         {
