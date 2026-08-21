@@ -30,6 +30,6 @@ public class EnemyCanon : MonoBehaviour
     public void Shot()
     {
        bullet = Instantiate(bulletPrefab, bulletPosition.position, transform.rotation);
-       bullet.Launch();
+       bullet.Launch(Vector2.left);
     }
 }

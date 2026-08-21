@@ -175,7 +175,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShoeAttack
   spawnPosition: {x: 1.28, y: -3.95, z: 0}
-  minimumY: -12.6
-  maximumY: 3.4
   strikeHeight: 10
   returnDuration: 0.2

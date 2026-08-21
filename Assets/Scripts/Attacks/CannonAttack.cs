@@ -64,7 +64,7 @@ public class CannonAttack : Attack
 
         activeCannonBall = Instantiate(cannonBallPrefab, muzzlePoint.position, Quaternion.identity);
         activeCannonBall.gameObject.SetActive(true);
-        activeCannonBall.Launch();
+        activeCannonBall.Launch(Vector2.right);
 
         StartCoroutine(DisableCannonAfterDelay());
     }

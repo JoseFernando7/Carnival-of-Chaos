@@ -15,6 +15,7 @@ public class ShoeAttack : Attack
     private Collider2D shoeCollider;
     private bool isShoeModeActive;
     private Coroutine returnRoutine;
+    private bool collisionWasLogged;
 
     public override void Activate()
     {
@@ -64,6 +65,8 @@ public class ShoeAttack : Attack
         // Keyframe 0.30: vuelve exactamente al punto que tenía al hacer clic.
         transform.position = originalPosition;
         SetColliderEnabled(true);
+        Physics2D.SyncTransforms();
+        LogOverlappingTarget();
         returnRoutine = null;
 
         yield return new WaitForSeconds(0.5f);
@@ -80,6 +83,7 @@ public class ShoeAttack : Attack
         }
 
         isShoeModeActive = true;
+        collisionWasLogged = false;
         SetColliderEnabled(false);
         transform.position = spawnPosition;
     }
@@ -107,11 +111,52 @@ public class ShoeAttack : Attack
         LogCollisionWithValidTag(other);
     }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        LogCollisionWithValidTag(other);
+    }
+
     private void LogCollisionWithValidTag(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        string targetTag = GetTargetTag(other);
+        if (!string.IsNullOrEmpty(targetTag) && !collisionWasLogged)
         {
-            Debug.Log($"Colisión con {other.tag}");
+            PlayerController target = other.GetComponentInParent<PlayerController>();
+            if (target != null)
+            {
+                collisionWasLogged = true;
+                target.ReduceLife(targetTag);
+            }
+        }
+    }
+
+    private string GetTargetTag(Collider2D other)
+    {
+        Transform current = other.transform;
+        while (current != null)
+        {
+            if (current.CompareTag("Player") || current.CompareTag("Enemy"))
+            {
+                return current.tag;
+            }
+            current = current.parent;
+        }
+        return string.Empty;
+    }
+
+    private void LogOverlappingTarget()
+    {
+        if (shoeCollider == null)
+        {
+            return;
+        }
+
+        ContactFilter2D filter = new ContactFilter2D { useTriggers = true, useLayerMask = false };
+        Collider2D[] overlaps = new Collider2D[16];
+        int count = shoeCollider.Overlap(filter, overlaps);
+        for (int i = 0; i < count; i++)
+        {
+            LogCollisionWithValidTag(overlaps[i]);
         }
     }
 }

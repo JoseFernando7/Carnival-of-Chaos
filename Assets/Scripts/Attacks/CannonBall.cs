@@ -7,19 +7,38 @@ public class CannonBall : MonoBehaviour
 
     private Rigidbody2D rb;
     private Collider2D[] ballColliders;
+    private SpriteRenderer spriteRenderer;
+    private bool hasHitTarget;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         ballColliders = GetComponents<Collider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         rb.gravityScale = 0f;
     }
 
     public void Launch()
     {
+        Launch(Vector2.right);
+    }
+
+    public void Launch(Vector2 direction)
+    {
         rb.gravityScale = 0f;
-        IgnorePlayerCollisions();
-        rb.linearVelocity = Vector2.right * speed;
+        float horizontalDirection = Mathf.Sign(direction.x);
+        if (Mathf.Approximately(horizontalDirection, 0f))
+        {
+            horizontalDirection = 1f;
+        }
+
+        rb.linearVelocity = new Vector2(horizontalDirection * speed, 0f);
+
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.flipX = horizontalDirection < 0f;
+        }
+
         Destroy(gameObject, lifetime);
     }
 
@@ -39,23 +58,42 @@ public class CannonBall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Player"))
-        {
-            foreach (Collider2D ballCollider in ballColliders)
-            {
-                Physics2D.IgnoreCollision(ballCollider, collision.collider);
-            }
-
-            return;
-        }
+        ProcessTargetCollision(collision.collider);
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-      if (collider.CompareTag("Enemy"))
+        ProcessTargetCollision(collider);
+    }
+
+    private void ProcessTargetCollision(Collider2D collider)
+    {
+      if (hasHitTarget)
       {
-        Debug.Log($"Colisión con {collider.tag}");
+        return;
+      }
+
+      string targetTag = GetTargetTag(collider);
+      PlayerController target = collider.GetComponentInParent<PlayerController>();
+      if (!string.IsNullOrEmpty(targetTag) && target != null)
+      {
+        hasHitTarget = true;
+        target.ReduceLife(targetTag);
         Destroy(gameObject);
       }
+    }
+
+    private string GetTargetTag(Collider2D collider)
+    {
+        Transform current = collider.transform;
+        while (current != null)
+        {
+            if (current.CompareTag("Player") || current.CompareTag("Enemy"))
+            {
+                return current.tag;
+            }
+            current = current.parent;
+        }
+        return string.Empty;
     }
 }

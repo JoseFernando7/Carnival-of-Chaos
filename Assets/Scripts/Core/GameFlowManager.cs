@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameFlowManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class GameFlowManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private RPSUI rpsUI;
     [SerializeField] private UIAnimationsManager cards;
+    [SerializeField] private GameObject victoryPanel;
+    [SerializeField] private GameObject losePanel;
 
     [Header("Movement")]
     [SerializeField] private PlayerMovement player1Movement;
@@ -26,6 +29,7 @@ public class GameFlowManager : MonoBehaviour
     private bool roundResolved;
     private bool player1Win = false;
     private bool draw = false;
+    private bool gameEnded;
 
     private void Awake()
     {
@@ -35,6 +39,9 @@ public class GameFlowManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
+        if (victoryPanel != null) victoryPanel.SetActive(false);
+        if (losePanel != null) losePanel.SetActive(false);
+
         currentPhase = GamePhase.RPS;
 
         player1Movement.SetMovementEnabled(false);
@@ -45,7 +52,7 @@ public class GameFlowManager : MonoBehaviour
 
     private void Update()
     {
-        if (currentPhase != GamePhase.RPS) return;
+        if (gameEnded || currentPhase != GamePhase.RPS) return;
 
         if (player1.HasSelected && player2.HasSelected && !roundResolved)
         {
@@ -140,5 +147,43 @@ public class GameFlowManager : MonoBehaviour
         cards.CardRestart();
 
         rpsUI.HideResult();
+    }
+
+    public void GameOver()
+    {
+        EndGame(losePanel);
+    }
+
+    public void Victory()
+    {
+        EndGame(victoryPanel);
+    }
+
+    private void EndGame(GameObject panelToShow)
+    {
+        if (gameEnded)
+        {
+            return;
+        }
+
+        gameEnded = true;
+        player1Movement.SetMovementEnabled(false);
+        player2Movement.state = EnemyIA.State.Idle;
+        spawnAttack.DestroyAllAttacks();
+
+        if (panelToShow != null)
+        {
+            panelToShow.SetActive(true);
+        }
+    }
+
+    public void ResetScene()
+    {
+      SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ShowMenuScene()
+    {
+      SceneManager.LoadScene("Menu");
     }
 }

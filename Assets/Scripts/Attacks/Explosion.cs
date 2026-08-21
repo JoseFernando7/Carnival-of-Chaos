@@ -1,9 +1,11 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Explosion : MonoBehaviour
 {
     [SerializeField, Min(0.01f)] private float duration = 0.5f;
+    private readonly HashSet<PlayerController> damagedTargets = new HashSet<PlayerController>();
 
     private void OnEnable()
     {
@@ -29,9 +31,25 @@ public class Explosion : MonoBehaviour
 
     private void LogCollisionWithValidTag(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        string targetTag = GetTargetTag(other);
+        PlayerController target = other.GetComponentInParent<PlayerController>();
+        if (!string.IsNullOrEmpty(targetTag) && target != null && damagedTargets.Add(target))
         {
-            Debug.Log($"Colisión con {other.tag}");
+            target.ReduceLife(targetTag);
         }
+    }
+
+    private string GetTargetTag(Collider2D other)
+    {
+        Transform current = other.transform;
+        while (current != null)
+        {
+            if (current.CompareTag("Player") || current.CompareTag("Enemy"))
+            {
+                return current.tag;
+            }
+            current = current.parent;
+        }
+        return string.Empty;
     }
 }
