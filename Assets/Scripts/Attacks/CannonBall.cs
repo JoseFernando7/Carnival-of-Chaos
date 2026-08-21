@@ -19,7 +19,7 @@ public class CannonBall : MonoBehaviour
     {
         rb.gravityScale = 0f;
         IgnorePlayerCollisions();
-        rb.linearVelocity = transform.right * speed;
+        rb.linearVelocity = Vector2.right * speed;
         Destroy(gameObject, lifetime);
     }
 
@@ -48,11 +48,14 @@ public class CannonBall : MonoBehaviour
 
             return;
         }
+    }
 
-        if (collision.collider.CompareTag("Enemy"))
-        {
-          Debug.Log($"Colisión con {collision.collider.tag}");
-          Destroy(gameObject);
-        }
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+      if (collider.CompareTag("Enemy"))
+      {
+        Debug.Log($"Colisión con {collider.tag}");
+        Destroy(gameObject);
+      }
     }
 }

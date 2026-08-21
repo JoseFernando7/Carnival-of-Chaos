@@ -181,11 +181,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BombAttack
   landingPosition: {x: 5.3, y: -2.5}
-  arcHeight: 20
+  arcHeight: 15
   minimumTargetPosition: {x: 2.5, y: -12.4}
   maximumTargetPosition: {x: 20, y: 3.6}
   trajectorySegments: 32
   explosion: {fileID: 8712592391501737076, guid: 9e29f3e98d80541c581ec32467533356, type: 3}
+  isForEnemy: 0
 --- !u!1 &7290450939422621473
 GameObject:
   m_ObjectHideFlags: 0

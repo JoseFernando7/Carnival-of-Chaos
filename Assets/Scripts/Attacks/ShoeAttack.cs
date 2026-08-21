@@ -7,15 +7,11 @@ public class ShoeAttack : Attack
     [Header("Spawn")]
     [SerializeField] private Vector3 spawnPosition = new Vector3(1.28f, -3.95f, 0f);
 
-    [Header("Movement")]
-    [SerializeField] private float minimumY = -12.6f;
-    [SerializeField] private float maximumY = 3.4f;
-
     [Header("Strike")]
     [SerializeField] private float strikeHeight = 10f;
     [SerializeField, Min(0.01f)] private float returnDuration = 0.3f;
 
-    private Camera mainCamera;
+    private Transform playerTransform;
     private Collider2D shoeCollider;
     private bool isShoeModeActive;
     private Coroutine returnRoutine;
@@ -27,7 +23,6 @@ public class ShoeAttack : Attack
 
     private void Awake()
     {
-        mainCamera = Camera.main;
         shoeCollider = GetComponent<Collider2D>();
         SetColliderEnabled(false);
         transform.position = spawnPosition;
@@ -35,18 +30,12 @@ public class ShoeAttack : Attack
 
     private void Update()
     {
-        if (!isShoeModeActive || Mouse.current == null || mainCamera == null)
+        if (!isShoeModeActive || Mouse.current == null || playerTransform == null)
         {
             return;
         }
 
-        Vector2 mouseScreenPosition = Mouse.current.position.ReadValue();
-        float distanceToPlane = -mainCamera.transform.position.z;
-        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(
-            new Vector3(mouseScreenPosition.x, mouseScreenPosition.y, distanceToPlane));
-
-        float clampedY = Mathf.Clamp(mouseWorldPosition.y, minimumY, maximumY);
-        transform.position = new Vector3(spawnPosition.x, clampedY, spawnPosition.z);
+        transform.position = new Vector3(spawnPosition.x, playerTransform.position.y, spawnPosition.z);
 
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
@@ -93,6 +82,11 @@ public class ShoeAttack : Attack
         isShoeModeActive = true;
         SetColliderEnabled(false);
         transform.position = spawnPosition;
+    }
+
+    public void SetPlayerTransform(Transform playerTransform)
+    {
+      this.playerTransform = playerTransform;
     }
 
     private void SetColliderEnabled(bool enabled)

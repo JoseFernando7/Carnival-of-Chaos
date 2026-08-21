@@ -91,11 +91,14 @@ public class GameFlowManager : MonoBehaviour
     {
         currentPhase = GamePhase.Battle;
 
-        spawnAttack.SpawnRandomAttack();
+        if (player1Win)
+        {
+            spawnAttack.SpawnRandomAttack(player1.transform);
+        }
 
         player1Movement.SetMovementEnabled(true);
 
-        if(player1Win == true)
+        if (player1Win)
         {
             player2Movement.state = EnemyIA.State.Runaway;
         }
@@ -118,6 +121,7 @@ public class GameFlowManager : MonoBehaviour
     {
         player1Movement.SetMovementEnabled(false);
         player2Movement.state = EnemyIA.State.Idle;
+        spawnAttack.DestroyAllAttacks();
 
         currentPhase = GamePhase.RPS;
 
