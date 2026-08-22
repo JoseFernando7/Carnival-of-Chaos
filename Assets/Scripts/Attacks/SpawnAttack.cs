@@ -6,7 +6,7 @@ public class SpawnAttack : MonoBehaviour
     [Header("Attack Prefabs")]
     [SerializeField] private Attack[] attackPrefabs;
 
-    [SerializeField] private GameObject uiWeapons;
+    [SerializeField] public GameObject uiWeapons;
 
     private readonly List<Attack> activeAttacks = new List<Attack>();
 
@@ -50,8 +50,8 @@ public class SpawnAttack : MonoBehaviour
         }
       }
 
-        uiWeapons.GetComponent<UiWeapons>().Desactivate();
-
         activeAttacks.Clear();
+
+        uiWeapons.GetComponent<UiWeapons>().Desactivate();
     }
 }

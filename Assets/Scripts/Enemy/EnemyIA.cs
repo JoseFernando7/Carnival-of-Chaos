@@ -29,6 +29,9 @@ public class EnemyIA : MonoBehaviour
     [SerializeField] GameObject dog;
     [SerializeField] GameObject UiWeapons;
 
+    //Solucion de emergencia, la animacion si funciona en el enemigo pero no en el player
+    [SerializeField] GameObject UiWeaponsPlayer;
+
     private int randomAttack;
 
     public Vector2 center = new Vector2(10f, -3f);
@@ -75,6 +78,7 @@ public class EnemyIA : MonoBehaviour
                 _animator.SetFloat("Move", 0);
                 countOfAttacks = 0;
                 UiWeapons.GetComponent<UiWeapons>().Desactivate();
+                UiWeaponsPlayer.GetComponent<UiWeapons>().Desactivate();
                 canAttack = false;
                 attackTimer = 0;
                 isAttacking = false;
