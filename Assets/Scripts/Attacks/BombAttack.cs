@@ -121,6 +121,7 @@ public class BombAttack : Attack
 
         remainingFlightTime = flightTime;
         rb.linearVelocity = initialVelocity;
+        NotifyAttackUsed();
     }
 
     public void ActivateAiming()

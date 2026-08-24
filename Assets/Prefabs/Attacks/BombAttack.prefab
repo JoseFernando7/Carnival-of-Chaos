@@ -182,6 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BombAttack
   landingPosition: {x: 5.3, y: -2.5}
   arcHeight: 15
+  flightSpeedMultiplier: 2.5
   minimumTargetPosition: {x: 2.5, y: -12.4}
   maximumTargetPosition: {x: 20, y: 3.6}
   trajectorySegments: 32

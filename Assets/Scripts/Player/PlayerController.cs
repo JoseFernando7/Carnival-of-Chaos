@@ -74,6 +74,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void ReceiveDamage()
+    {
+        ReduceLife("Player");
+    }
+
     private void RemoveLifeIcon()
     {
         if (lifeIcons == null || lifeIcons.Length == 0)
