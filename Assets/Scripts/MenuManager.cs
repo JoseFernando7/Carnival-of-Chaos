@@ -11,6 +11,8 @@ public class MenuManager : MonoBehaviour
     public void CambiarEscena(int indiceEscena)
     {
         SceneManager.LoadScene(indiceEscena);
+
+        Time.timeScale = 1f;
     }
 
     // Activar/Abrir un panel (arrastrándolo al botón)
@@ -57,5 +59,7 @@ public class MenuManager : MonoBehaviour
     public void ReiniciarJuego()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        Time.timeScale = 1f;
     }
 }
