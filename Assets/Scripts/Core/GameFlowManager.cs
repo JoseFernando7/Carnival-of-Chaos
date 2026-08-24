@@ -43,6 +43,8 @@ public class GameFlowManager : MonoBehaviour
         if (losePanel != null) losePanel.SetActive(false);
 
         currentPhase = GamePhase.RPS;
+        player1.SetCombatCollidersEnabled(false);
+        player2.SetCombatCollidersEnabled(false);
 
         player1Movement.SetMovementEnabled(false);
         player2Movement.state = EnemyIA.State.Idle;
@@ -97,6 +99,8 @@ public class GameFlowManager : MonoBehaviour
     private void StartBattlePhase()
     {
         currentPhase = GamePhase.Battle;
+        player1.SetCombatCollidersEnabled(true);
+        player2.SetCombatCollidersEnabled(true);
 
         if (player1Win)
         {
@@ -128,6 +132,8 @@ public class GameFlowManager : MonoBehaviour
     {
         player1Movement.SetMovementEnabled(false);
         player2Movement.state = EnemyIA.State.Idle;
+        player1.SetCombatCollidersEnabled(false);
+        player2.SetCombatCollidersEnabled(false);
         spawnAttack.DestroyAllAttacks();
 
         currentPhase = GamePhase.RPS;
@@ -169,6 +175,8 @@ public class GameFlowManager : MonoBehaviour
         gameEnded = true;
         player1Movement.SetMovementEnabled(false);
         player2Movement.state = EnemyIA.State.Idle;
+        player1.SetCombatCollidersEnabled(false);
+        player2.SetCombatCollidersEnabled(false);
         spawnAttack.DestroyAllAttacks();
 
         if (panelToShow != null)

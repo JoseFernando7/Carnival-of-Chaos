@@ -66,7 +66,6 @@ public class EnemyIA : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(countOfAttacks);
         switch (state)
         {
             case State.Idle:

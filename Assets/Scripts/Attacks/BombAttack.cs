@@ -7,6 +7,8 @@ public class BombAttack : Attack
     [SerializeField] public Vector2 landingPosition = new Vector2(5.30000019f, -2.5f);
     [Tooltip("Altura, en unidades de Unity, que alcanza la bomba sobre el punto más alto entre origen y destino.")]
     [SerializeField, Min(0.01f)] private float arcHeight = 6f;
+    [Tooltip("Aumenta la rapidez del vuelo manteniendo la misma altura de la parábola.")]
+    [SerializeField, Min(1f)] private float flightSpeedMultiplier = 2f;
 
     [Header("Targeting")]
     [SerializeField] private Vector2 minimumTargetPosition = new Vector2(2.5f, -12.4f);
@@ -107,7 +109,7 @@ public class BombAttack : Attack
     public void ThrowBomb()
     {
         hasBeenThrown = true;
-        rb.gravityScale = 1f;
+        rb.gravityScale = flightSpeedMultiplier;
 
         // Rigidbody2D simula únicamente X e Y; mantenemos el plano visual pedido.
         transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
@@ -159,7 +161,7 @@ public class BombAttack : Attack
         }
 
         trajectoryLine.positionCount = trajectorySegments + 1;
-        Vector2 gravity = Physics2D.gravity;
+        Vector2 gravity = Physics2D.gravity * flightSpeedMultiplier;
         float lineZ = trajectoryLine.transform.position.z;
 
         for (int i = 0; i <= trajectorySegments; i++)
@@ -197,7 +199,7 @@ public class BombAttack : Attack
 
     private bool CalculateLaunch(Vector2 origin, Vector2 target, out Vector2 initialVelocity, out float flightTime)
     {
-        float gravity = Mathf.Abs(Physics2D.gravity.y);
+        float gravity = Mathf.Abs(Physics2D.gravity.y) * flightSpeedMultiplier;
         if (gravity <= Mathf.Epsilon)
         {
             Debug.LogError("BombAttack necesita una gravedad vertical distinta de cero.", this);

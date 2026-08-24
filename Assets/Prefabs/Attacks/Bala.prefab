@@ -169,5 +169,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4c35ad72b05fb808ebd90009738f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CannonBall
-  speed: 40
+  speed: 30
   lifetime: 4

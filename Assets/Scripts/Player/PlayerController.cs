@@ -8,14 +8,34 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject[] lifeIcons = new GameObject[3];
     [SerializeField] private GameFlowManager gameFlowManager;
 
+    private Collider2D[] colliders;
+
     public RPSChoice CurrentChoice { get; private set; }
     public bool HasSelected { get; private set; }
 
     private void Awake()
     {
+        colliders = GetComponentsInChildren<Collider2D>(true);
+
         if (gameFlowManager == null)
         {
             gameFlowManager = FindFirstObjectByType<GameFlowManager>();
+        }
+    }
+
+    public void SetCombatCollidersEnabled(bool enabled)
+    {
+        if (colliders == null)
+        {
+            colliders = GetComponentsInChildren<Collider2D>(true);
+        }
+
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider != null)
+            {
+                collider.enabled = enabled;
+            }
         }
     }
 
