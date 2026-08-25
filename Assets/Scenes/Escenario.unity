@@ -7091,12 +7091,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterAudio
   clipAnimal: {fileID: 0}
   volumenAnimal: 0.5
-  minTiempoGrumete: 3
-  maxTiempoGrumete: 5
+  minTiempoGrumete: 5
+  maxTiempoGrumete: 8
   clipImpacto: {fileID: 0}
-  volumenImpacto: 0.26
+  volumenImpacto: 0.15
   clipPasos: {fileID: 0}
-  volumenPasos: 0.13
+  volumenPasos: 0.05
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
