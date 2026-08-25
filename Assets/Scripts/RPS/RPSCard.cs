@@ -16,10 +16,8 @@ public class RPSCard : MonoBehaviour
 
     public void RandomChoice()
     {
-        RPSChoice botChoice = (RPSChoice)UnityEngine.Random.Range(0, Enum.GetValues(typeof(RPSChoice)).Length); 
+        RPSChoice botChoice = (RPSChoice)UnityEngine.Random.Range(0, Enum.GetValues(typeof(RPSChoice)).Length);
 
         playerIA.SelectChoice(botChoice);
-        Debug.Log("Enemigo eligio: " + botChoice);
-
     }
 }

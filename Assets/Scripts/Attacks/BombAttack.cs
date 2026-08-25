@@ -119,7 +119,6 @@ public class BombAttack : Attack
         }
         else
         {
-            Debug.Log(" [Audio] WeaponSFX encontrado. Intentando reproducir...");
             weaponAudio.ReproducirSonidoArma();
         }
 

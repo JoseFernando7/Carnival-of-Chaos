@@ -91,7 +91,7 @@ public class GameplayMusicController : MonoBehaviour
 
         if (victorySource != null)
         {
-            victorySource.loop = true;
+            victorySource.loop = false;
             victorySource.Play();
         }
     }
@@ -102,7 +102,7 @@ public class GameplayMusicController : MonoBehaviour
 
         if (defeatSource != null)
         {
-            defeatSource.loop = true;
+            defeatSource.loop = false;
             defeatSource.Play();
         }
     }
