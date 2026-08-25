@@ -5873,16 +5873,16 @@ MonoBehaviour:
   clipPasosComun: {fileID: 8300000, guid: 5162315e663fe264090892b84c51d9d0, type: 3}
   skinPerezosa: {fileID: 21300000, guid: bbb4dd5553dda004e88142969207a894, type: 3}
   animatorPerezosa: {fileID: 9100000, guid: ff18242cd9665aa448db6872fd468f3c, type: 2}
-  sonidoPerezosa: {fileID: 0}
+  sonidoPerezosa: {fileID: 8300000, guid: b9d9f8e9af76fbf42b59d4c3cdd95ed6, type: 3}
   skinPez: {fileID: 21300000, guid: 72623d51cd8ca4b47ab920f20ea24a3f, type: 3}
   animatorPez: {fileID: 9100000, guid: 4c7e4a64c6132044d9940ede1694e0a6, type: 2}
-  sonidoPez: {fileID: 0}
+  sonidoPez: {fileID: 8300000, guid: 1148e7d5843b014448be458405a14c79, type: 3}
   skinOso: {fileID: 21300000, guid: b6c1e054bda44344a99187bdada1911e, type: 3}
   animatorOso: {fileID: 9100000, guid: 4762309902979374aa7da8a977e4a09c, type: 2}
-  sonidoOso: {fileID: 0}
+  sonidoOso: {fileID: 8300000, guid: 1f9c0b00b1e42d7468e6b7d19f7698f0, type: 3}
   skinZorro: {fileID: 21300000, guid: 9d1174573d33845428f468e0e27d0c75, type: 3}
   animatorZorro: {fileID: 9100000, guid: 104c71ffd36507b4897cf93bef798c13, type: 2}
-  sonidoZorro: {fileID: 0}
+  sonidoZorro: {fileID: 8300000, guid: f5a7d3b9a4fb566408e0c2f7cc922ab5, type: 3}
 --- !u!114 &1915945104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7094,9 +7094,9 @@ MonoBehaviour:
   minTiempoGrumete: 3
   maxTiempoGrumete: 5
   clipImpacto: {fileID: 0}
-  volumenImpacto: 0.6
+  volumenImpacto: 0.26
   clipPasos: {fileID: 0}
-  volumenPasos: 0.3
+  volumenPasos: 0.13
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
