@@ -7090,7 +7090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterAudio
   clipAnimal: {fileID: 0}
-  volumenAnimal: 0.5
+  volumenAnimal: 0.18
   minTiempoGrumete: 5
   maxTiempoGrumete: 8
   clipImpacto: {fileID: 0}
