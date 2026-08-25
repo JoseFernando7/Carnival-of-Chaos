@@ -19,7 +19,7 @@ public class ShoeAttack : Attack
 
     public override void Activate()
     {
-      ActivateShoeMode();
+        ActivateShoeMode();
     }
 
     private void Awake()
@@ -38,9 +38,18 @@ public class ShoeAttack : Attack
 
         transform.position = new Vector3(spawnPosition.x, playerTransform.position.y, spawnPosition.z);
 
+     // Al hacer clic, SE DISPARA EL ATAQUE Y EL SONIDO
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             isShoeModeActive = false;
+
+            // REPRODUCIR SONIDO JUSTO AL DAR CLIC
+            WeaponSFX weaponAudio = GetComponentInChildren<WeaponSFX>();
+            if (weaponAudio != null)
+            {
+                weaponAudio.ReproducirSonidoArma();
+            }
+
             returnRoutine = StartCoroutine(ReturnAfterStrike());
         }
     }
@@ -61,6 +70,7 @@ public class ShoeAttack : Attack
             transform.position = Vector3.Lerp(raisedPosition, originalPosition, progress);
             yield return null;
         }
+       
 
         // Keyframe 0.30: vuelve exactamente al punto que tenía al hacer clic.
         transform.position = originalPosition;
@@ -90,7 +100,7 @@ public class ShoeAttack : Attack
 
     public void SetPlayerTransform(Transform playerTransform)
     {
-      this.playerTransform = playerTransform;
+        this.playerTransform = playerTransform;
     }
 
     private void SetColliderEnabled(bool enabled)

@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float minY;
     [SerializeField] private float maxY;
 
-
     private Rigidbody2D rb;
     private Vector2 movementInput;
     private bool canMove = false;
@@ -35,6 +34,13 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable()
     {
         MoveAction.Disable();
+
+        // Control de audio: detener pasos si se deshabilita
+        CharacterAudio charAudio = GetComponent<CharacterAudio>();
+        if (charAudio != null)
+        {
+            charAudio.ControlarPasos(false);
+        }
     }
 
     // Update is called once per frame
@@ -46,6 +52,13 @@ public class PlayerMovement : MonoBehaviour
         movementInput = movementInput.normalized;
 
         _animator.SetFloat("Move", movementInput.magnitude);
+
+        // --- CONTROL DE AUDIO PARA PASOS ---
+        CharacterAudio charAudio = GetComponent<CharacterAudio>();
+        if (charAudio != null)
+        {
+            charAudio.ControlarPasos(movementInput.magnitude > 0.01f);
+        }
 
         FixedDirection();
     }
@@ -77,6 +90,13 @@ public class PlayerMovement : MonoBehaviour
             movementInput = Vector2.zero;
             rb.linearVelocity = Vector2.zero;
             _animator.SetFloat("Move", movementInput.magnitude);
+
+            // Control de audio: detener pasos si no puede moverse
+            CharacterAudio charAudio = GetComponent<CharacterAudio>();
+            if (charAudio != null)
+            {
+                charAudio.ControlarPasos(false);
+            }
         }
     }
 

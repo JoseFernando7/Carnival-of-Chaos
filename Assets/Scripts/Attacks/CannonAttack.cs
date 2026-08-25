@@ -14,7 +14,7 @@ public class CannonAttack : Attack
 
     public override void Activate()
     {
-      ActivateCannonMode();
+        ActivateCannonMode();
     }
 
     private void Awake()
@@ -65,6 +65,14 @@ public class CannonAttack : Attack
         activeCannonBall = Instantiate(cannonBallPrefab, muzzlePoint.position, Quaternion.identity);
         activeCannonBall.gameObject.SetActive(true);
         activeCannonBall.Launch(Vector2.right);
+
+        // REPRODUCCIÓN DE AUDIO DE CAÑÓN 
+        WeaponSFX weaponAudio = GetComponent<WeaponSFX>();
+        if (weaponAudio != null)
+        {
+            weaponAudio.ReproducirSonidoArma();
+        }
+
         NotifyAttackUsed();
 
         StartCoroutine(DisableCannonAfterDelay());
@@ -72,7 +80,7 @@ public class CannonAttack : Attack
 
     private IEnumerator DisableCannonAfterDelay()
     {
-      yield return new WaitForSeconds(2f);
-      Destroy(gameObject);
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
     }
 }

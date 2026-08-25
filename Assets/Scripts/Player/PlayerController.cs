@@ -59,6 +59,14 @@ public class PlayerController : MonoBehaviour
 
         lifes--;
         RemoveLifeIcon();
+
+        // Reproducir sonido de impacto 
+    CharacterAudio charAudio = GetComponent<CharacterAudio>();
+    if (charAudio != null)
+    {
+        charAudio.ReproducirImpacto();
+    }
+
         Debug.Log($"{targetTag} ahora tiene {lifes} vidas");
 
         if (lifes == 0 && gameFlowManager != null)

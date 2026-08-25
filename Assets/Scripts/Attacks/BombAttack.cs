@@ -31,7 +31,7 @@ public class BombAttack : Attack
 
     public override void Activate()
     {
-      ActivateAiming();
+        ActivateAiming();
     }
 
     private void Awake()
@@ -62,11 +62,12 @@ public class BombAttack : Attack
         {
             return;
         }
-        if(isForEnemy == false)
+        if (isForEnemy == false)
         {
             landingPosition = GetClampedMousePosition();
         }
-        if(landingPosition != null){
+        if (landingPosition != null)
+        {
             DrawTrajectory(landingPosition);
         }
 
@@ -103,13 +104,24 @@ public class BombAttack : Attack
         }
 
         gameObject.SetActive(false);
-        Destroy(gameObject,1f);
+        Destroy(gameObject, 1f);
     }
 
     public void ThrowBomb()
     {
         hasBeenThrown = true;
         rb.gravityScale = flightSpeedMultiplier;
+
+        WeaponSFX weaponAudio = GetComponent<WeaponSFX>();
+        if (weaponAudio == null)
+        {
+            Debug.LogError(" [Audio] No se encontró el script WeaponSFX en el GameObject de la Bomba.");
+        }
+        else
+        {
+            Debug.Log(" [Audio] WeaponSFX encontrado. Intentando reproducir...");
+            weaponAudio.ReproducirSonidoArma();
+        }
 
         // Rigidbody2D simula únicamente X e Y; mantenemos el plano visual pedido.
         transform.position = new Vector3(transform.position.x, transform.position.y, 0f);

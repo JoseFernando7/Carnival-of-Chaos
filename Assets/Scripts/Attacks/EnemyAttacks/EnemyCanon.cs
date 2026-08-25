@@ -31,5 +31,12 @@ public class EnemyCanon : MonoBehaviour
     {
        bullet = Instantiate(bulletPrefab, bulletPosition.position, transform.rotation);
        bullet.Launch(Vector2.left);
+
+       // REPRODUCCIÓN DE AUDIO DE CAÑÓN (ENEMIGO)
+       WeaponSFX weaponAudio = GetComponent<WeaponSFX>();
+       if (weaponAudio != null)
+       {
+           weaponAudio.ReproducirSonidoArma();
+       }
     }
 }

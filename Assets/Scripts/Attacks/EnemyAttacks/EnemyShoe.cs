@@ -7,6 +7,14 @@ public class EnemyShoe : MonoBehaviour
     private void OnEnable()
     {
         hasDamagedPlayer = false;
+
+        // REPRODUCCIÓN DE AUDIO DE ZAPATO (ENEMIGO)
+        WeaponSFX weaponAudio = GetComponentInChildren<WeaponSFX>();
+        if (weaponAudio != null)
+        {
+            weaponAudio.ReproducirSonidoArma();
+        }
+        
         Destroy(gameObject, 1);
     }
 
