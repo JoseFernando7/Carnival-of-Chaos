@@ -26,7 +26,6 @@ El juego continúa hasta que uno de los jugadores se quede sin vidas.
 
 ## 🎮 Mecánicas principales
 
-- Modo local para 2 jugadores.
 - Sistema de Piedra, Papel o Tijera.
 - Turnos de ataque y defensa.
 - Selección aleatoria de armas.
@@ -64,23 +63,23 @@ Assets/
 ## 🚀 Roadmap
 
 ### Fase 1
-- [ ] Movimiento de personajes
-- [ ] Sistema de Piedra, Papel o Tijera
-- [ ] Sistema de turnos
-- [ ] Sistema de vidas
+- [X] Movimiento de personajes
+- [X] Sistema de Piedra, Papel o Tijera
+- [X] Sistema de turnos
+- [X] Sistema de vidas
 
 ### Fase 2
-- [ ] Implementación de armas
-- [ ] Mecánicas de ataque
-- [ ] Mecánicas de defensa
-- [ ] Efectos visuales y sonoros
+- [X] Implementación de armas
+- [X] Mecánicas de ataque
+- [X] Mecánicas de defensa
+- [X] Efectos visuales y sonoros
 
 ### Fase 3
-- [ ] Pulido del gameplay
-- [ ] Balance del juego
-- [ ] Menús
-- [ ] Pantalla de victoria
-- [ ] Optimización
+- [X] Pulido del gameplay
+- [X] Balance del juego
+- [X] Menús
+- [X] Pantalla de victoria
+- [X] Optimización
 
 ---
 
@@ -88,11 +87,11 @@ Assets/
 
 | Rol | Integrante |
 |------|------------|
-| Game Design | |
-| Programming | |
-| Art | |
-| UI/UX | |
-| Audio | |
+| QA | @Bikiel, @cidroro |
+| Programming | @JoseFernando7, @cidroro |
+| Art | @SEVFCA |
+| UI/UX | @Jabnellara |
+| Audio | @Bikiel |
 
 ---
 
