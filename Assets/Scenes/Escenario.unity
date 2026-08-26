@@ -4988,6 +4988,10 @@ PrefabInstance:
       propertyPath: m_Resource
       value: 
       objectReference: {fileID: 8300000, guid: 41432d7122160484d8dc463bde0c5953, type: 3}
+    - target: {fileID: 5309693048654702009, guid: 5b90333adeee85b478d39604ca4f3cc8, type: 3}
+      propertyPath: clickVolume
+      value: 0.08
+      objectReference: {fileID: 0}
     - target: {fileID: 6267320647980538475, guid: 5b90333adeee85b478d39604ca4f3cc8, type: 3}
       propertyPath: m_Resource
       value: 
@@ -7090,13 +7094,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterAudio
   clipAnimal: {fileID: 0}
-  volumenAnimal: 0.18
+  volumenAnimal: 0.08
   minTiempoGrumete: 5
   maxTiempoGrumete: 8
   clipImpacto: {fileID: 0}
   volumenImpacto: 0.15
   clipPasos: {fileID: 0}
-  volumenPasos: 0.05
+  volumenPasos: 0.01
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
